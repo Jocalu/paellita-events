@@ -1,6 +1,6 @@
 # Paellita events
 
-Is an application to add to the calendar the events of a group of friends called "Paellita".
+Is an application to add to the calendar the events of the "Paellita" group of friends.
 
 ## What's inside?
 

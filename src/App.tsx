@@ -33,7 +33,7 @@ const App = () => {
             </List>
           </Card>
         </div>
-        <div className="flex justify-center pt-10">
+        <div className="hidden justify-center pt-10">
           <Button label={'Add events to the calendar'} />
         </div>
       </div>
