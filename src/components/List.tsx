@@ -4,7 +4,7 @@ interface Props {
 
 const List = ({ children }: Props) => {
   return (
-    <div className="flow-root">
+    <div className="max-h-96 overflow-auto">
       <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
         {children}
       </ul>
