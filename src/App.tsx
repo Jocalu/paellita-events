@@ -1,3 +1,4 @@
+import { User } from './@types/User'
 import Button from './components/Button'
 import Card from './components/Card'
 import Footer from './components/Footer'
@@ -7,12 +8,9 @@ import ListItem from './components/ListItem'
 import Title from './components/Title'
 
 import { users } from './db/users.json'
+import { changeDateFormat, sortByNextBirthday } from './utils/dates'
 
-interface User {
-  name: string
-  birthdayDate: string
-  image: string
-}
+const transformedUsers = changeDateFormat(sortByNextBirthday(users))
 
 const App = () => {
   return (
@@ -24,9 +22,9 @@ const App = () => {
         <div className="flex flex-col items-center gap-y-4">
           <Card title={'Birthdays'}>
             <List>
-              {users.map((user: User) => (
+              {transformedUsers.map((user: User) => (
                 <ListItem
-                  key={user.birthdayDate}
+                  key={user.birthdayDate + user.name}
                   name={user.name}
                   birthdayDate={user.birthdayDate}
                   image={user.image}
