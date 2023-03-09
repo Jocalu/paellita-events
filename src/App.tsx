@@ -7,7 +7,7 @@ import List from './components/List'
 import ListItem from './components/ListItem'
 import Title from './components/Title'
 
-import { users } from './db/users.json'
+import { users } from './data/users.js'
 import { changeDateFormat, sortByNextBirthday } from './utils/dates'
 
 const transformedUsers = changeDateFormat(sortByNextBirthday(users))
