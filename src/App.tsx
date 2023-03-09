@@ -18,7 +18,7 @@ const App = () => {
       <Header>
         <Title />
       </Header>
-      <div className="w-full p-4 flex flex-col">
+      <div className="w-full flex flex-col px-4">
         <div className="flex flex-col items-center gap-y-4">
           <Card title={'Birthdays'}>
             <List>

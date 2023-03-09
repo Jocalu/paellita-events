@@ -4,9 +4,7 @@ interface Props {
 
 const Footer = ({ text }: Props) => {
   return (
-    <footer className="flex justify-center absolute inset-x-0 bottom-10  font-semibold">
-      {text}
-    </footer>
+    <footer className="flex justify-center pt-6 font-semibold">{text}</footer>
   )
 }
 
