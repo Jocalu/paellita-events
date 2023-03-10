@@ -1,4 +1,3 @@
-import { User } from './@types/User'
 import Button from './components/Button'
 import Card from './components/Card'
 import Footer from './components/Footer'
@@ -10,9 +9,11 @@ import Title from './components/Title'
 import { users } from './data/users.js'
 import { changeDateFormat, sortByNextBirthday } from './utils/dates'
 
-const transformedUsers = changeDateFormat(sortByNextBirthday(users))
+import { type User } from './@types/User'
 
 const App = () => {
+  const transformedUsers = changeDateFormat(sortByNextBirthday(users))
+
   return (
     <>
       <Header>

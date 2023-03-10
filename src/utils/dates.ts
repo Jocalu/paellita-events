@@ -1,4 +1,4 @@
-import { User } from '../@types/User'
+import { type User } from '../@types/User'
 
 export const changeDateFormat = (users: User[]) => {
   return users.map((user: User) => {
