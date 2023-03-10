@@ -1,21 +1,28 @@
 import { type User } from '../@types/User'
 
-export const changeDateFormat = (users: User[]) => {
-  return users.map((user: User) => {
-    const birthdayDate = new Date(user.birthdayDate)
+export const changeDateFormat = (date: string) => {
+  const dateToFormat = new Date(date)
 
-    return {
-      ...user,
-      birthdayDate: birthdayDate.toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long'
-      })
-    }
+  return dateToFormat.toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long'
   })
+}
+
+export const changeYearByCurrent = (date: string) => {
+  const dateToFormat = new Date(date)
+  const now = new Date()
+
+  return new Date(
+    now.getFullYear(),
+    dateToFormat.getMonth(),
+    dateToFormat.getDate() + 1
+  )
 }
 
 export const sortByNextBirthday = (users: User[]) => {
   const now = new Date()
+
   return users
     .map((user) => {
       const birthday = new Date(user.birthdayDate)
