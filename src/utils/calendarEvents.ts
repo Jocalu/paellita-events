@@ -8,29 +8,32 @@ interface RequestEvent {
 
 const gapi = (window as any).gapi
 
-const SCOPES = 'https://www.googleapis.com/auth/calendar.events'
-
 export const addCalendarEvent = (events: CalendarEvent[]) => {
   gapi.load('client:auth2', () => {
     gapi.client.init({
       apiKey: import.meta.env.VITE_GOOGLE_API_KEY,
       clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-      scope: SCOPES,
+      discoveryDocs: [
+        'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+      ],
+      scope: 'https://www.googleapis.com/auth/calendar.events',
       plugin_name: 'paellita-events'
     })
 
     gapi.client.load('calendar', 'v3')
 
     gapi.auth2.getAuthInstance().then(() => {
-      events.forEach((event) => {
-        const request = gapi.client.calendar.events.insert({
-          calendarId: 'primary',
-          resource: event
-        })
+      events.forEach((event, index) => {
+        setTimeout(() => {
+          const request = gapi.client.calendar.events.insert({
+            calendarId: 'primary',
+            resource: event
+          })
 
-        request.execute((event: RequestEvent) => {
-          window.open(event.htmlLink)
-        })
+          request.execute((event: RequestEvent) => {
+            window.open(event.htmlLink)
+          })
+        }, index * 500)
       })
     })
   })
