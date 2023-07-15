@@ -1,4 +1,3 @@
-import Button from './components/Button'
 import Card from './components/Card'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -6,9 +5,9 @@ import List from './components/List'
 import ListItem from './components/ListItem'
 import Title from './components/Title'
 
+import { sortByNextBirthday } from './utils/dates'
+
 import { users } from './data/users.js'
-import { changeDateFormat, sortByNextBirthday } from './utils/dates'
-import { addCalendarEvent, getEventsFromUsers } from './utils/calendarEvents'
 
 import { type User } from './@types/User'
 
@@ -25,23 +24,17 @@ const App = () => {
           {sorteredUsers.length ? (
             <Card title={'Birthdays'}>
               <List>
-                {sorteredUsers.map((user: User) => (
+                {sorteredUsers.map(({ name, birthdayDate, image }: User) => (
                   <ListItem
-                    key={user.birthdayDate + user.name}
-                    name={user.name}
-                    birthdayDate={changeDateFormat(user.birthdayDate)}
-                    image={user.image}
+                    key={birthdayDate + name}
+                    name={name}
+                    birthdayDate={birthdayDate}
+                    image={image}
                   />
                 ))}
               </List>
             </Card>
           ) : null}
-        </div>
-        <div className="hidden justify-center pt-10">
-          <Button
-            label={'Add events to the calendar'}
-            onClick={() => addCalendarEvent(getEventsFromUsers(sorteredUsers))}
-          />
         </div>
       </div>
       <Footer text={'For friends and family only'} />
